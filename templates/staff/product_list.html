@@ -1,0 +1,107 @@
+{% extends "no_header_base.html" %}
+
+
+{% block content %}
+
+<div class="site-section">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-12">
+                <h2 class="text-black">Staff portal - Products</h2>
+                <a class="add-inventory-btn" href="{% url 'staff:product-create' %}">+ Add inventory</a>
+                <div class="card product-list-card">
+                    <div class="card-body">
+                        <div class="site-blocks-table">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Artist/Band</th>
+                                        <th>Album Title</th>
+                                        <th>Price</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for product in products  %}
+                                    <tr>
+
+                                        <td>{{ product.artist_name }}</td>
+                                        <td>{{ product.album_title }}</td>
+                                        <td>£{{ product.get_price }}</td>
+                                        <td class="actions-section">
+                                            <a href="{{ product.get_update_url }}" class="product-update-btn mr-2"
+                                                href="#">Update</a>
+                                            <a tabindex="0" class="product-delete-btn" role="button" data-html="true"
+                                                data-toggle="popover" data-trigger="focus" title="Are You Sure?"
+                                                data-content="<a href='{{ product.get_delete_url }}'>Yes</a>">
+                                                Destroy
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    {% empty %}
+                                    <tr>
+                                        <td colspan="3">
+                                            No products to display
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                        {% if page_obj.has_other_pages %}
+                        <div class="row">
+                            <div class="col-md-12 text-center">
+                                <div class="site-block-27">
+                                    <ul>
+                                        {% if page_obj.has_previous %}
+                                        <li><a href="?page={{ page_obj.previous_page_number }}">&laquo;</a></li>
+                                        {% else %}
+                                        <li class="disabled"><span>&laquo;</span></li>
+                                        {% endif %}
+
+                                        {% for i in paginator.page_range  %}
+
+                                        {% if page_obj.number == i %}
+                                        <li class="active">
+                                            <span>
+                                                {{i}}
+                                                <span class="sr-only">(current)</span>
+                                            </span>
+                                        </li>
+                                        {% else %}
+                                        <li><a href="?page={{ i }}">{{ i }}</a></li>
+
+                                        {% endif %}
+
+
+                                        {% endfor %}
+
+                                        {% if page_obj.has_next %}
+                                        <li><a href="?page={{ page_obj.next_page_number }}">&raquo;</a></li>
+                                        {% else %}
+                                        <li class="disabled"><span>&raquo;</span></li>
+                                        {% endif %}
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
+
+
+{% block scripts %}
+
+<script>
+    $(function () {
+        $('[data-toggle=popover]').popover();
+    })
+</script>
+
+{% endblock scripts %}
