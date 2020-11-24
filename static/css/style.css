@@ -722,55 +722,6 @@ a:hover {
 
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 .cart-product-checkout-wrap {
   height: 800px;
 
@@ -1430,6 +1381,84 @@ a:hover {
   -ms-flex-pack: center;
   justify-content: center;
 
+}
+
+/*
+    ============= 
+    "THANKS" PAGE
+    =============
+    */
+
+.thanks-wrap {
+  height: 800px;
+  flex-flow: column;
+}
+
+.thanks-btn-wrap {
+  min-width: 400px;
+  justify-content: space-between;
+
+}
+
+.thanks-btns {
+  background-color: #313331;
+  color: #fff !important;
+  border: none;
+  min-width: 150px;
+  height: 45px;
+  font-family: 'Roboto Condensed', sans-serif;
+  cursor: pointer;
+
+}
+
+.thanks-btns:hover {
+  opacity: 0.7;
+}
+
+.thanks-text {
+  color: #313331;
+  font-size: 20rem;
+  margin: 0;
+
+}
+
+.thanks-blurb {
+  color: #000;
+  margin: 0;
+}
+
+@media(max-width: 1246px) {
+  .thanks-text {
+    font-size: 15rem;
+  }
+}
+
+@media(max-width: 896px) {
+  .thanks-text {
+    font-size: 12rem;
+  }
+}
+
+@media(max-width: 688px) {
+  .thanks-text {
+    font-size: 8rem;
+  }
+}
+
+@media(max-width: 375px) {
+  .thanks-text {
+    font-size: 5rem;
+  }
+}
+
+.smiley-face-wrap-thanks-page {
+  min-width: 38%;
+  min-height: 100px;
+  justify-content: space-between;
+}
+
+.sad-face-img-thanks-page {
+  height: 50px;
 }
 
 /*

@@ -1,9 +1,26 @@
-{% extends "base.html" %}
+{% extends "no_header_base.html" %}
+{% load static %}
 
 
 {% block content %}
 
 
-Thanks
-  
+<div class="thanks-wrap flexed col-md-12">
+    <h1 class="thanks-text">THANKS
+    </h1>
+    <div class="smiley-face-wrap-thanks-page flexed mt-4">
+        <img src="{% static '/images/smiley.png' %}" alt="smiley face" class="sad1 sad-face-img-thanks-page">
+        <img src="{% static '/images/smileydark.png' %}" alt="smiley face" class="sad2 sad-face-img-thanks-page">
+        <img src="{% static '/images/smiley.png' %}" alt="smiley face" class="sad1 sad-face-img-thanks-page">
+        <img src="{% static '/images/smileydark.png' %}" alt="smiley face" class="sad2 sad-face-img-thanks-page">
+        <img src="{% static '/images/smiley.png' %}" alt="smiley face" class="sad1 sad-face-img-thanks-page">
+        <img src="{% static '/images/smileydark.png' %}" alt="smiley face" class="sad2 sad-face-img-thanks-page">
+    </div>
+
+    <div class="flexed thanks-btn-wrap">
+        <a href="/" class="flexed thanks-btns">Home</a>
+        <a href="{% url 'cart:product-list' %}" class="flexed thanks-btns">⟵ Back to store</a>
+    </div>
+</div>
+
 {% endblock content %}
