@@ -136,8 +136,6 @@ class Order(models.Model):
     def get_raw_total(self):
         delivery = "-10%"
         subtotal = self.get_raw_subtotal()
-        # #TODO: Add delivery charges
-        # total = subtotal - delivery
         return subtotal
     
     def get_total(self):
