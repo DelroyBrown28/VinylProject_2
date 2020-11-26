@@ -14,7 +14,7 @@ from .models import (Product,
                      Address,
                      Payment,
                      Order,
-                     Category)
+                     Genre)
 
 
 class ProductListView(generic.ListView):
@@ -22,16 +22,16 @@ class ProductListView(generic.ListView):
 
     def get_queryset(self):
         qs = Product.objects.all()
-        category = self.request.GET.get('category', None)
-        if category:
-            qs = qs.filter(Q(primary_category__name=category) |
-                           Q(secondary_category__name=category)).distinct()
+        genre = self.request.GET.get('genre', None)
+        if genre:
+            qs = qs.filter(Q(primary_genre__name=genre) |
+                           Q(secondary_genre__name=genre)).distinct()
         return qs
 
     def get_context_data(self, **kwargs):
         context = super(ProductListView, self).get_context_data(**kwargs)
         context.update({
-            "categories": Category.objects.values("name")
+            "genres": Genre.objects.values("name")
         })
         return context
 

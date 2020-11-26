@@ -8,12 +8,12 @@ from django.shortcuts import reverse
 User = get_user_model()
 
 
-class Category(models.Model):
+class Genre(models.Model):
     name = models.CharField(max_length=100)
     
 
     class Meta:
-        verbose_name_plural = "Categories"
+        verbose_name_plural = "Genres"
 
     def __str__(self):
         return self.name
@@ -58,10 +58,10 @@ class Product(models.Model):
     updated = models.DateTimeField(auto_now=True)
     active = models.BooleanField(default=False)
     available_formats = models.ManyToManyField(FormatVariation)
-    primary_category = models.ForeignKey(Category,
+    primary_genre = models.ForeignKey(Genre,
                                         related_name='primary_products',
                                         on_delete=models.CASCADE)
-    secondary_category = models.ManyToManyField(Category, blank=True)
+    secondary_genre = models.ManyToManyField(Genre, blank=True)
     
     def __str__(self):
         return self.artist_name

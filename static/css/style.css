@@ -1524,8 +1524,8 @@ a:hover {
 }
 
 #id_available_formats,
-#id_primary_category,
-#id_secondary_category {
+#id_primary_genre,
+#id_secondary_genre {
   border-bottom: 1px solid #313331 !important;
   background-color: transparent;
   border: none;

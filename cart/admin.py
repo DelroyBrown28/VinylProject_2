@@ -5,7 +5,7 @@ from .models import (FormatVariation,
                     Product,
                     Address,
                     Payment,
-                    Category)
+                    Genre)
 
 
 class AddressAdmin(admin.ModelAdmin):
@@ -19,15 +19,15 @@ class AddressAdmin(admin.ModelAdmin):
     
 class ProductAdmin(admin.ModelAdmin):
     search_fields = ['artist_name']
-    list_filter = ['primary_category']
-    list_display = ['artist_name', 'album_title','primary_category', 'price', 'active']
-    list_editable = ['active', 'primary_category']
+    list_filter = ['primary_genre']
+    list_display = ['artist_name', 'album_title','primary_genre', 'price', 'active']
+    list_editable = ['active', 'primary_genre']
     prepopulated_fields = {"slug": ("album_title", "artist_name")}
     class Meta:
         model = Product
 
 
-admin.site.register(Category)
+admin.site.register(Genre)
 admin.site.register(Address, AddressAdmin)
 admin.site.register(Product, ProductAdmin)
 admin.site.register(OrderItem)
