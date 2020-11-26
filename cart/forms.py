@@ -34,10 +34,6 @@ class AddressForm(forms.Form):
     town_or_city = forms.CharField(required=False)
     county = forms.CharField(required=False)
     postcode = forms.CharField(required=False)
-    # billing_address_1 = forms.CharField()
-    # billing_address_2 = forms.CharField()
-    # billing_zip_code = forms.CharField()
-    # billing_city = forms.CharField()
 
     def __init__(self, *args, **kwargs):
         user_id = kwargs.pop('user_id')
@@ -67,13 +63,3 @@ class AddressForm(forms.Form):
             if not data.get('postcode', None):
                 self.add_error("postcode", "Please fill in this field")
 
-        # selected_billing_address = data.get('selected_billing_address', None)
-        # if selected_billing_address is None:
-        #     if not data.get('billing_address_1', None):
-        #         self.add_error("street_name_and_number", "Please fill in this field")
-        #     if not data.get('billing_address_2', None):
-        #         self.add_error("town_or_city", "Please fill in this field")
-        #     if not data.get('billing_zip_code', None):
-        #         self.add_error("county", "Please fill in this field")
-        #     if not data.get('billing_city', None):
-        #         self.add_error("postcode", "Please fill in this field")
