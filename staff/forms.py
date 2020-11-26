@@ -14,5 +14,5 @@ class ProductForm(forms.ModelForm):
             'price',
             'available_formats',
             'primary_category',
-            'secondary_genre',
+            'secondary_category',
         ]
