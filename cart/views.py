@@ -1,20 +1,20 @@
-import datetime
-import json
-from django.conf import settings
-from django.contrib import messages
-from django.http import JsonResponse
-from django.contrib.auth.mixins import LoginRequiredMixin
-from django.db.models import Q
-from django.shortcuts import get_object_or_404, reverse, redirect
-from django.views import generic
-from .forms import AddToCartForm, AddressForm
-from .utils import get_or_set_order_session
 from .models import (Product,
                      OrderItem,
                      Address,
                      Payment,
                      Order,
-                     Genre)
+                     Category)
+from .utils import get_or_set_order_session
+from .forms import AddToCartForm, AddressForm
+from django.views import generic
+from django.shortcuts import get_object_or_404, reverse, redirect
+from django.db.models import Q
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.http import JsonResponse
+from django.contrib import messages
+from django.conf import settings
+import json
+import datetime
 
 
 class ProductListView(generic.ListView):
@@ -22,16 +22,16 @@ class ProductListView(generic.ListView):
 
     def get_queryset(self):
         qs = Product.objects.all()
-        genre = self.request.GET.get('genre', None)
-        if genre:
-            qs = qs.filter(Q(primary_genre__name=genre) |
-                           Q(secondary_genre__name=genre)).distinct()
+        category = self.request.GET.get('category', None)
+        if category:
+            qs = qs.filter(Q(primary_category__name=category) |
+                           Q(secondary_category__name=category)).distinct()
         return qs
 
     def get_context_data(self, **kwargs):
         context = super(ProductListView, self).get_context_data(**kwargs)
         context.update({
-            "genres": Genre.objects.values("name")
+            "categories": Category.objects.values("name")
         })
         return context
 

@@ -13,6 +13,6 @@ class ProductForm(forms.ModelForm):
             'image_2',
             'price',
             'available_formats',
-            'primary_genre',
+            'primary_category',
             'secondary_genre',
         ]
