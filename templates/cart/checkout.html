@@ -22,7 +22,7 @@
                         sign in</a>
 
                     before you can checkout.</span>
-                    
+
                 <small class="dont-worry-text" data-aos="fade" data-aos-delay="2500">
                     Don't worry, it only takes a second.
                 </small>
@@ -47,51 +47,51 @@
 
     {% else %}
 
-        <form method="POST" class="mt-5" style="margin-top: 100px !important;">
-            {% csrf_token %}
-            <div class="col-md-12 p-0 address-form-wrap">
-                <div class="col-md-6 ">
-                    <h3 class="shipping-details-text">Where should we delivery?</h3>
-                    <hr>
-                    <div>
-                        {{ form|crispy }}
-                    </div>
-                    <button class="payment-btn">Proceed To Payment</button>
+    <form method="POST" class="mt-5" style="margin-top: 100px !important;">
+        {% csrf_token %}
+        <div class="col-md-12 p-0 address-form-wrap">
+            <div class="col-md-6 ">
+                <h3 class="shipping-details-text">Where should we delivery?</h3>
+                <hr>
+                <div>
+                    {{ form|crispy }}
                 </div>
-    
-                <div class="col-md-6 p-0 paying-side-wrap">
-                    <div class="col-md-12 p-0 buying-wrap">
-    
-                        <!-- Modal Trigger -->
-                        <a class="view-products-btn modal-trigger" href="#modal1">View Checkout Products</a>
-    
-                        <!-- Modal Structure -->
-                        <div id="modal1" class="modal bottom-sheet cart-items-modal">
-                            {% for item in order.items.all %}
-                            <div class="modal-content">
-                                <div class="checkout-items-wrap">
-                                    <img src="{{ item.product.image.url }}" class="cart-checkout-image" alt="Record Image">
-                                    <p style="font-size: 1rem;" class="artist-name">{{ item.product.artist_name }}</p>
-                                    <p style="font-size: 1rem;" class="album-title">{{ item.product.album_title }}</p>
-                                    <p class="main-item-price">£{{ item.product.get_price }}</p>
-                                    <p class="album-title" style="color: red;">{{ item.format.name }}</p>
-                                    <small>x{{ item.quantity }}</small>
-                                </div>
-    
+                <button class="payment-btn">Proceed To Payment</button>
+            </div>
+
+            <div class="col-md-6 p-0 paying-side-wrap">
+                <div class="col-md-12 p-0 buying-wrap">
+
+                    <!-- Modal Trigger -->
+                    <a class="view-products-btn modal-trigger" href="#modal1">View Checkout Products</a>
+
+                    <!-- Modal Structure -->
+                    <div id="modal1" class="modal bottom-sheet cart-items-modal">
+                        {% for item in order.items.all %}
+                        <div class="modal-content">
+                            <div class="checkout-items-wrap">
+                                <img src="{{ item.product.image.url }}" class="cart-checkout-image" alt="Record Image">
+                                <p style="font-size: 1rem;" class="artist-name">{{ item.product.artist_name }}</p>
+                                <p style="font-size: 1rem;" class="album-title">{{ item.product.album_title }}</p>
+                                <p class="main-item-price">£{{ item.product.get_price }}</p>
+                                <p class="album-title" style="color: red;">{{ item.format.name }}</p>
+                                <small>x{{ item.quantity }}</small>
                             </div>
-                            {% endfor %}
-                            <div class="modal-footer">
-                                <a href="#!" class="modal-close btn-flat">x close</a>
-                            </div>
+
                         </div>
-                        <div class="total-wrap mt-4">
-                            <p class="subtotal-text"><strong>SUBTOTAL:</strong> £{{ order.get_subtotal }}</p>
-                            <p class="total-text"><strong>TOTAL:</strong> £{{ order.get_total }}</p>
+                        {% endfor %}
+                        <div class="modal-footer">
+                            <a href="#!" class="modal-close btn-flat">x close</a>
                         </div>
+                    </div>
+                    <div class="total-wrap mt-4">
+                        <p class="subtotal-text"><strong>SUBTOTAL:</strong> £{{ order.get_subtotal }}</p>
+                        <p class="total-text"><strong>TOTAL:</strong> £{{ order.get_total }}</p>
                     </div>
                 </div>
             </div>
-        </form>
+        </div>
+    </form>
 </body>
 
 
