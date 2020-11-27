@@ -45,8 +45,7 @@
       <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
       {% endif %}
       {{ form|crispy }}
-      <a class="button secondaryAction sign-up-link float-right"
-        href="{% url 'account_reset_password' %}">{% trans "Forgot Password?" %}</a>
+      
       <button class="primaryAction sign-in-btn" type="submit">{% trans "Sign In" %}</button>
     </form>
   </div>
