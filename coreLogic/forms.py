@@ -1,6 +1,7 @@
 from django import forms
 
 
+# Simple contact form sends email and message to store owner
 class ContactForm(forms.Form):
     name = forms.CharField(max_length=100, widget=forms.TextInput(attrs={
         'placeholder': "Your Full Name. . ."

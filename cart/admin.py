@@ -1,11 +1,11 @@
 from django.contrib import admin
 from .models import (FormatVariation,
-                    Order,
-                    OrderItem,
-                    Product,
-                    Address,
-                    Payment,
-                    Category)
+                     Order,
+                     OrderItem,
+                     Product,
+                     Address,
+                     Payment,
+                     Category)
 
 
 class AddressAdmin(admin.ModelAdmin):
@@ -16,13 +16,18 @@ class AddressAdmin(admin.ModelAdmin):
         'city',
         'address_type',
     ]
-    
+
+# Customization for product admin fields
+
+
 class ProductAdmin(admin.ModelAdmin):
     search_fields = ['artist_name']
     list_filter = ['primary_category']
-    list_display = ['artist_name', 'album_title','primary_category', 'price', 'active']
+    list_display = ['artist_name', 'album_title',
+                    'primary_category', 'price', 'active']
     list_editable = ['active', 'primary_category']
     prepopulated_fields = {"slug": ("album_title", "artist_name")}
+
     class Meta:
         model = Product
 

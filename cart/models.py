@@ -7,7 +7,7 @@ from django.shortcuts import reverse
 
 User = get_user_model()
 
-
+#Category/Genre modal
 class Category(models.Model):
     name = models.CharField(max_length=100)
     
@@ -21,7 +21,7 @@ class Category(models.Model):
 
 class Address(models.Model):
     ADDRESS_CHOICES = (
-        ('B', 'Billing'),
+        # ('B', 'Billing'),
         ('S', 'Shipping'),
     )
     
@@ -39,14 +39,15 @@ class Address(models.Model):
     class Meta:
         verbose_name_plural = 'Addresses'
     
-
+# Variations for vinyl format (7', 10' 12')
 class FormatVariation(models.Model):
     name = models.CharField(max_length=20)
 
     def __str__(self):
         return self.name
     
-    
+   
+# The products details 
 class Product(models.Model):
     artist_name = models.CharField(max_length=150, null=False)
     album_title = models.CharField(max_length=150, null=False)
@@ -96,6 +97,7 @@ class OrderItem(models.Model):
         return "{:.2f}".format(price / 100)
 
 
+# Captures order information
 class Order(models.Model):
     user = models.ForeignKey(User,
                             blank=True,
@@ -160,7 +162,8 @@ class Payment(models.Model):
     def reference_number(self):
         return f"PAYMENT-{self.order}-{self.pk}"
     
-    
+
+# Pre save fall back 
 def pre_save_product_receiver(sender, instance, *args, **kwargs):
     if not instance.slug:
         instance.slug = slugify(instance.album_title)

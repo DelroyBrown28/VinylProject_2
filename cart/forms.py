@@ -20,15 +20,11 @@ class AddToCartForm(forms.ModelForm):
 
         self.fields['format'].queryset = product.available_formats.all()
 
-
+# Collects address from User and stores to profile
 class AddressForm(forms.Form):
     selected_shipping_address = forms.ModelChoiceField(
         Address.objects.none(), required=False
     )
-
-    # selected_billing_address = forms.ModelChoiceField(
-    #     Address.objects.none(), required=False
-    # )
 
     street_name_and_number = forms.CharField(required=False)
     town_or_city = forms.CharField(required=False)

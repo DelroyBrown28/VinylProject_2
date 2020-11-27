@@ -87,7 +87,7 @@ class CartView(generic.TemplateView):
         context["order"] = get_or_set_order_session(self.request)
         return context
 
-
+# Product increment view
 class IncreaseQuantityView(generic.View):
     def get(self, request, *args, **kwargs):
         order_item = get_object_or_404(OrderItem, id=kwargs['pk'])
@@ -96,6 +96,7 @@ class IncreaseQuantityView(generic.View):
         return redirect('cart:summary')
 
 
+# Product decrement view
 class DecreaseQuantityView(generic.View):
     def get(self, request, *args, **kwargs):
         order_item = get_object_or_404(OrderItem, id=kwargs['pk'])
@@ -107,7 +108,7 @@ class DecreaseQuantityView(generic.View):
             order_item.save()
         return redirect('cart:summary')
 
-
+# Removes product from cart
 class RemoveFromCartView(generic.View):
     def get(self, request, *args, **kwargs):
         order_item = get_object_or_404(OrderItem, id=kwargs['pk'])
