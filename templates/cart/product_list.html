@@ -8,13 +8,13 @@
 
 <body class="product-list-body">
     <div class="col-md-12 mb-4 p-0 categories-wrap">
-
+        
         <ul class="categories-list flexed">
             <h3 class="genres-title m-0 flexed">Genres ⟶</h3>
             {% for category in categories  %}
             <li class="category-list-item flexed">
                 <a href="?category={{ category.name }}" class="d-flex">
-
+                 
 
                     <span>{{ category.name }}</span>
                 </a>
@@ -30,11 +30,9 @@
             <div class="lineDiv1" data-aos="fade-up" data-aos-delay="200"></div>
 
             <figure class="block-4-image">
-
-
                 <a href="{{ product.get_absolute_url }}">
                     <img src="{{ product.image.url }}" alt="Album image" class="product-image">
-                    </audio>
+                </a>
             </figure>
             <div class="block-4-text p-4">
                 <a href="{{ product.get_absolute_url }}">
@@ -43,94 +41,13 @@
                 <p class="album-name">{{ product.album_title }}</p>
                 <p class="album-name mt-4">£{{ product.get_price }}</p>
 
-
-                <!-- Audio Player -->
-                <div class="audio-player">
-
-                    <audio id="audio">
-                        <source src="{{ product.audio_file.url }}" type="audio/mp3">
-                    </audio>
-
-                    <div class="player-controls">
-                        <div id="radioIcon"></div>
-                        <button id="playAudio" class="playAudio"></button>
-                        <div id="seekObjContainer">
-                            <div id="seekObj">
-                                <div id="percentage"></div>
-                            </div>
-                        </div>
-                        <p><small id="currentTime">00:00</small></p>
-                    </div>
-                </div>
-
             </div>
             <div class="lineDiv2" data-aos="fade-up" data-aos-delay="200"></div>
         </div>
         {% endfor %}
     </div>
-
 </body>
-<script>
-    function $(id) {
-        return document.getElementById(id);
-    };
-    const media = document.getElementById('audio');
 
-    let ui = {
-        play: 'playAudio',
-        audio: 'audio',
-        percentage: 'percentage',
-        seekObj: 'seekObj',
-        currentTime: 'currentTime'
-    };
 
-    function togglePlay() {
-        if (media.paused === false) {
-            media.pause();
-            $(ui.play).classList.remove('pause');
-        } else {
-            media.play();
-            $(ui.play).classList.add('pause');
-        }
-        console.log(togglePlay);
-    }
 
-    function calculatePercentPlayed() {
-        let percentage = (media.currentTime / media.duration).toFixed(2) * 100;
-        $(ui.percentage).style.width = `${percentage}%`;
-    }
-
-    function calculateCurrentValue(currentTime) {
-        const currentMinute = parseInt(currentTime / 60) % 60;
-        const currentSecondsLong = currentTime % 60;
-        const currentSeconds = currentSecondsLong.toFixed();
-        const currentTimeFormatted = `${currentMinute < 10 ? `0${currentMinute}` : currentMinute}:${
-      currentSeconds < 10 ? `0${currentSeconds}` : currentSeconds
-      }`;
-
-        return currentTimeFormatted;
-    }
-
-    function initProgressBar() {
-        const currentTime = calculateCurrentValue(media.currentTime);
-        $(ui.currentTime).innerHTML = currentTime;
-        $(ui.seekObj).addEventListener('click', seek);
-
-        media.onended = () => {
-            $(ui.play).classList.remove('pause');
-            $(ui.percentage).style.width = 0;
-            $(ui.currentTime).innerHTML = '00:00';
-        };
-
-        function seek(e) {
-            const percent = e.offsetX / this.offsetWidth;
-            media.currentTime = percent * media.duration;
-        }
-
-        calculatePercentPlayed();
-    }
-
-    $(ui.play).addEventListener('click', togglePlay)
-    $(ui.audio).addEventListener('timeupdate', initProgressBar);
-</script>
 {% endblock content %}
