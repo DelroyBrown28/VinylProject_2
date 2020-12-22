@@ -4,8 +4,8 @@ $(document).ready(function () {
     $('.tooltipped').tooltip({
         'inDuration': 500,
         'transitionMovement': 0,
-
     });
+
 
     AOS.init({
         duration: 800,
@@ -14,7 +14,7 @@ $(document).ready(function () {
     });
 
 
-
+    // Scrollbar animation
     $(document).scroll(function (e) {
         var scrollAmount = $(window).scrollTop();
         var documentHeight = $(document).height();
@@ -27,10 +27,6 @@ $(document).ready(function () {
         // For scrollbar 2
         $(".scrollBar2").css("width", scrollPercent + "%");
     });
-
-
-
-
 
 
 

@@ -497,6 +497,8 @@ a:hover {
   animation-timing-function: linear
 }
 
+
+
 @-webkit-keyframes spin {
   from {
     -webkit-transform: rotate(0);
@@ -568,6 +570,91 @@ a:hover {
   border-top: 1px solid #f4fff7;
   padding: 0
 }
+
+/* 
+============
+AUDIO PLAYER
+============
+*/
+
+
+.audio-player {
+  width: 100%;
+  padding: 15px 10px;
+  margin: auto;
+}
+
+.audio-player .player-controls {
+  position: relative;
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-pack: justify;
+  justify-content: space-between;
+  -webkit-box-align: center;
+  align-items: center;
+}
+
+
+.audio-player #playAudio {
+  -webkit-appearance: none;
+  outline: none;
+  cursor: pointer;
+  border: none;
+  width: 30px;
+  height: 30px;
+  background: url("https://image.flaticon.com/icons/svg/149/149125.svg") no-repeat center;
+  background-size: contain;
+}
+
+.audio-player #playAudio.pause {
+  background: url("https://image.flaticon.com/icons/svg/149/149127.svg") no-repeat center;
+  background-size: contain;
+}
+
+.audio-player p {
+  margin: 0 0 0 5px;
+  line-height: 1;
+  display: -webkit-inline-box;
+  display: inline-flex;
+}
+
+.audio-player p small {
+  font-size: 10px;
+}
+
+.audio-player #seekObjContainer {
+  position: relative;
+  width: 300px;
+  margin: 0 5px;
+  height: 5px;
+}
+
+.audio-player #seekObjContainer #seekObj {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background-color: #e3e3e3;
+  border: 1px solid black;
+}
+
+.audio-player #seekObjContainer #seekObj #percentage {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  background-color: coral;
+}
+
+
+/* 
+============
+AUDIO PLAYER
+============
+*/
+
+
+
+
 
 .product-details-wrap {
   display: -webkit-box;
