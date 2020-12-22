@@ -60,7 +60,6 @@
 <script>
     var playBtn = document.getElementById('play'),
         productSnippet = document.getElementById('product-snippet')
-        resetSnippet = document.getElementById('resetSnippet')
     audios = document.querySelectorAll('audio');
     console.log(audios);
 
@@ -85,22 +84,7 @@
         false
     );
 
-    resetBtn.addEventListener(
-        "mouseover",
-        function () {
-            heartbeat.play();
-        },
-        false
-    );
 
-    resetBtn.addEventListener(
-        "mouseleave",
-        function () {
-            heartbeat.pause();
-            heartbeat.currentTime = 0;
-        },
-        false
-    );
 </script>
 
 

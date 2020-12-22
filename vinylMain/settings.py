@@ -1,6 +1,5 @@
 import os
 import psycopg2
-import django_heroku
 import dj_database_url
 import environ
 import smtplib
@@ -153,24 +152,20 @@ if DEBUG is False:
 
     PAYPAL_CLIENT_ID = os.environ.get('PAYPAL_LIVE_CLIENT_ID')
     PAYPAL_SECRET_KEY = os.environ.get('PAYPAL_LIVE_SECRET_KEY')
-    
-
-AWS_STORAGE_BUCKET_NAME = 'vinylproject'
-AWS_S3_REGION_NAME = 'eu-west-2'
-AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
-AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
-AWS_S3_CUSTOM_DOMAIN = 'vinylproject.s3.amazonaws.com'
-AWS_S3_FILE_OVERWRITE = False
-AWS_DEFAULT_ACL = False
-
-STATICFILES_STORAGE = 'custom_storages.StaticStorage'
-STATICFILES_LOCATION = 'static/'
-DEFAULT_FILE_STORAGE = 'custom_storages.MediaStorage'
-MEDIAFILES_LOCATION = 'media'
-
-STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{STATICFILES_LOCATION}/'
-MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{MEDIAFILES_LOCATION}/'
 
 
-# Activate Django-Heroku.
-django_heroku.settings(locals())
+# AWS_STORAGE_BUCKET_NAME = 'vinylproject'
+# AWS_S3_REGION_NAME = 'eu-west-2'
+# AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
+# AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
+# AWS_S3_CUSTOM_DOMAIN = 'vinylproject.s3.amazonaws.com'
+# AWS_S3_FILE_OVERWRITE = False
+# AWS_DEFAULT_ACL = False
+
+# STATICFILES_STORAGE = 'custom_storages.StaticStorage'
+# STATICFILES_LOCATION = 'static/'
+# DEFAULT_FILE_STORAGE = 'custom_storages.MediaStorage'
+# MEDIAFILES_LOCATION = 'media'
+
+# STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{STATICFILES_LOCATION}/'
+# MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{MEDIAFILES_LOCATION}/'
