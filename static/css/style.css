@@ -485,16 +485,6 @@ a:hover {
 .product-image {
   height: 300px;
   z-index: -1;
-  -webkit-animation-name: spin;
-  animation-name: spin;
-  -webkit-animation-duration: 30s;
-  animation-duration: 30s;
-  -webkit-animation-delay: 2s;
-  animation-delay: 2s;
-  -webkit-animation-iteration-count: infinite;
-  animation-iteration-count: infinite;
-  -webkit-animation-timing-function: linear;
-  animation-timing-function: linear
 }
 
 
@@ -521,6 +511,17 @@ a:hover {
     -webkit-transform: rotate(360deg);
     transform: rotate(360deg)
   }
+}
+
+.product-image:hover {
+  -webkit-animation-name: spin;
+  animation-name: spin;
+  -webkit-animation-duration: 20s;
+  animation-duration: 20s;
+  -webkit-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
+  -webkit-animation-timing-function: linear;
+  animation-timing-function: linear
 }
 
 .product-detail-body {

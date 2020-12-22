@@ -6,7 +6,7 @@
 <div class="scrollBar1"><span></span></div>
 <div class="scrollBar2"><span></span></div>
 
-<body class="product-list-body">
+<body class="product-list-body" id="resetSnippet">
     <div class="col-md-12 mb-4 p-0 categories-wrap">
 
         <ul class="categories-list flexed">
@@ -32,9 +32,9 @@
             <figure class="block-4-image">
 
 
-                <a href="{{ product.get_absolute_url }}">
+                <a id="play" href="{{ product.get_absolute_url }}">
                     <img src="{{ product.image.url }}" alt="Album image" class="product-image">
-                    </audio>
+                </a>
             </figure>
             <div class="block-4-text p-4">
                 <a href="{{ product.get_absolute_url }}">
@@ -45,23 +45,9 @@
 
 
                 <!-- Audio Player -->
-                <div class="audio-player">
+                <audio id="product-snippet" src="{{ product.audio_file.url }}" preload="none"></audio>
 
-                    <audio id="audio">
-                        <source src="{{ product.audio_file.url }}" type="audio/mp3">
-                    </audio>
-
-                    <div class="player-controls">
-                        <div id="radioIcon"></div>
-                        <button id="playAudio" class="playAudio"></button>
-                        <div id="seekObjContainer">
-                            <div id="seekObj">
-                                <div id="percentage"></div>
-                            </div>
-                        </div>
-                        <p><small id="currentTime">00:00</small></p>
-                    </div>
-                </div>
+                <!-- Audio Player -->
 
             </div>
             <div class="lineDiv2" data-aos="fade-up" data-aos-delay="200"></div>
@@ -72,65 +58,50 @@
 </body>
 
 <script>
-    function $(id) {
-        return document.getElementById(id);
-    };
-    const media = document.getElementById('audio');
+    var playBtn = document.getElementById('play'),
+        productSnippet = document.getElementById('product-snippet')
+        resetSnippet = document.getElementById('resetSnippet')
+    audios = document.querySelectorAll('audio');
+    console.log(audios);
 
-    let ui = {
-        play: 'playAudio',
-        audio: 'audio',
-        percentage: 'percentage',
-        seekObj: 'seekObj',
-        currentTime: 'currentTime'
-    };
 
-    function togglePlay() {
-        if (media.paused === false) {
-            media.pause();
-            $(ui.play).classList.remove('pause');
-        } else {
-            media.play();
-            $(ui.play).classList.add('pause');
-        }
-    }
+    playBtn.addEventListener(
+        "mouseover",
+        function () {
+            [].forEach.call(audios, function (audio) {
+                // do whatever
+                audio.play();
+            });
+        },
+        false
+    );
 
-    function calculatePercentPlayed() {
-        let percentage = (media.currentTime / media.duration).toFixed(2) * 100;
-        $(ui.percentage).style.width = `${percentage}%`;
-    }
+    playBtn.addEventListener(
+        "mouseleave",
+        function () {
+            productSnippet.pause();
+            productSnippet.currentTime = 0;
+        },
+        false
+    );
 
-    function calculateCurrentValue(currentTime) {
-        const currentMinute = parseInt(currentTime / 60) % 60;
-        const currentSecondsLong = currentTime % 60;
-        const currentSeconds = currentSecondsLong.toFixed();
-        const currentTimeFormatted = `${currentMinute < 10 ? `0${currentMinute}` : currentMinute}:${
-      currentSeconds < 10 ? `0${currentSeconds}` : currentSeconds
-      }`;
+    resetBtn.addEventListener(
+        "mouseover",
+        function () {
+            heartbeat.play();
+        },
+        false
+    );
 
-        return currentTimeFormatted;
-    }
-
-    function initProgressBar() {
-        const currentTime = calculateCurrentValue(media.currentTime);
-        $(ui.currentTime).innerHTML = currentTime;
-        $(ui.seekObj).addEventListener('click', seek);
-
-        media.onended = () => {
-            $(ui.play).classList.remove('pause');
-            $(ui.percentage).style.width = 0;
-            $(ui.currentTime).innerHTML = '00:00';
-        };
-
-        function seek(e) {
-            const percent = e.offsetX / this.offsetWidth;
-            media.currentTime = percent * media.duration;
-        }
-
-        calculatePercentPlayed();
-    }
-
-    $(ui.play).addEventListener('click', togglePlay)
-    $(ui.audio).addEventListener('timeupdate', initProgressBar);
+    resetBtn.addEventListener(
+        "mouseleave",
+        function () {
+            heartbeat.pause();
+            heartbeat.currentTime = 0;
+        },
+        false
+    );
 </script>
+
+
 {% endblock content %}
