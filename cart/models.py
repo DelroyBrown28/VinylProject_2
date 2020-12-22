@@ -54,7 +54,7 @@ class Product(models.Model):
     slug = models.SlugField(unique=True)
     image = models.ImageField(upload_to='product_images')
     image_2 = models.ImageField(upload_to='product_images')
-    audio_file = models.FileField(default=False, upload_to='audio_files')
+    audio_file = models.FileField(upload_to='audio_files', default=False)
     price = models.IntegerField(default=0)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
